@@ -1,0 +1,15 @@
+django
+gunicorn
+django-debug-toolbar
+django-htmx
+dj-database-url
+jinja2
+psycopg2-binary
+python-dotenv
+whitenoise
+inflect
+titlecase
+django-storages
+boto3
+black
+isort

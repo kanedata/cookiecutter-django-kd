@@ -1,0 +1,11 @@
+{
+    "project_name": "New Django Project",
+    "author": "Project Author",
+    "author_email": "email@example.com",
+    "author_website": "https://example.com/",
+    "_copy_without_render": [
+        "*.html.j2"
+    ],
+    "__project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+    "__package_name": "{{ cookiecutter.project_name|lower|replace(' ', '_') }}"
+}
