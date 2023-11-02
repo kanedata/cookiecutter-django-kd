@@ -18,7 +18,6 @@ SENTENCE_SPLIT = re.compile(r"(\. )")
 
 
 def title_exceptions(word, **kwargs):
-
     word_test = word.strip("(){}<>.")
 
     # lowercase words
@@ -107,7 +106,7 @@ def title_exceptions(word, **kwargs):
 
 
 def to_titlecase(s, sentence=False):
-    if type(s) != str:
+    if not isinstance(s, str):
         return s
 
     s = s.strip()
