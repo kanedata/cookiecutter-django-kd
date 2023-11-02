@@ -12,4 +12,4 @@ titlecase
 django-storages
 boto3
 black
-isort
+ruff
