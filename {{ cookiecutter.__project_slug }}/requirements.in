@@ -11,5 +11,4 @@ inflect
 titlecase
 django-storages
 boto3
-black
 ruff

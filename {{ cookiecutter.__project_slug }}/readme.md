@@ -10,6 +10,26 @@ pip-compile
 pip-sync
 ```
 
+### Setup Django
+
+```
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+### Run django server
+
+```
+python manage.py runserver
+```
+
+### Linting and code formatting
+
+```
+ruff check . --fix
+ruff format .
+```
+
 ## Setup on Dokku
 
 ```sh

@@ -25,4 +25,4 @@ jobs:
           ruff check .
       - name: black
         run: |
-          black . --check
+          ruff format . --check
