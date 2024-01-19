@@ -5,11 +5,13 @@ django-htmx
 dj-database-url
 jinja2
 psycopg2-binary
+{%- if cookiecutter.include_elasticsearch -%}
+django-elasticsearch-dsl
+{%- endif -%}
 python-dotenv
 whitenoise
 inflect
 titlecase
 django-storages
 boto3
-black
-isort
+ruff

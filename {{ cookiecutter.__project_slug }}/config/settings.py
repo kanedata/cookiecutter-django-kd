@@ -112,10 +112,12 @@ DATABASES = {
     "default": dj_database_url.config(conn_max_age=600, default="sqlite:///db.sqlite3"),
 }
 
+{%- if cookiecutter.include_elasticsearch -%}
 # Elasticsearch
 ELASTICSEARCH_DSL = {
     "default": {"hosts": os.environ.get("ELASTICSEARCH_URL")},
 }
+{% endif -%}
 
 # Caching
 CACHES = {

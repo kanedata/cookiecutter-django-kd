@@ -3,6 +3,7 @@
     "author": "Project Author",
     "author_email": "email@example.com",
     "author_website": "https://example.com/",
+    "include_elasticsearch": false,
     "_copy_without_render": [
         "*.html.j2"
     ],
