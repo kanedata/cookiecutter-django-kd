@@ -2,15 +2,15 @@ import re
 import urllib.parse
 from datetime import date, datetime
 
+import titlecase
 from django.contrib.humanize.templatetags.humanize import naturalday, naturaltime
 from django.shortcuts import resolve_url
 from django.templatetags.static import static
 from django.urls import NoReverseMatch, reverse
 from django.utils.text import slugify
 from django_htmx.jinja import django_htmx_script
-import titlecase
-from jinja2 import Environment
 
+from jinja2 import Environment
 
 VOWELS = re.compile("[AEIOUYaeiouy]")
 ORD_NUMBERS_RE = re.compile(r"([0-9]+(?:st|nd|rd|th))")
@@ -18,7 +18,6 @@ SENTENCE_SPLIT = re.compile(r"(\. )")
 
 
 def title_exceptions(word, **kwargs):
-
     word_test = word.strip("(){}<>.")
 
     # lowercase words
@@ -107,7 +106,7 @@ def title_exceptions(word, **kwargs):
 
 
 def to_titlecase(s, sentence=False):
-    if type(s) != str:
+    if not isinstance(s, str):
         return s
 
     s = s.strip()
