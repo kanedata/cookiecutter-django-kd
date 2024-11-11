@@ -10,6 +10,21 @@ pip-compile
 pip-sync
 ```
 
+### With UV
+
+```sh
+uv venv
+uv pip compile requirements.in -o requirements.txt
+uv pip sync requirements.txt
+```
+
+#### Update dependencies
+
+```sh
+uv pip compile requirements.in -o requirements.txt
+uv pip sync requirements.txt
+```
+
 ### Setup Django
 
 ```
@@ -76,7 +91,7 @@ python manage.py search_index --create
 {%- endif -%}
 ```
 
-```
+```sh
 git remote add dokku dokku@SERVER_HOST:{{ cookiecutter.__project_slug }}
 git push dokku main
 ```
