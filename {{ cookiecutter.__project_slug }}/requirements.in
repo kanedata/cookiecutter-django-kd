@@ -5,9 +5,9 @@ django-htmx
 dj-database-url
 jinja2
 psycopg2-binary
-{%- if cookiecutter.include_elasticsearch -%}
+{% if cookiecutter.include_elasticsearch %}
 django-elasticsearch-dsl
-{%- endif -%}
+{% endif %}
 python-dotenv
 whitenoise
 inflect

@@ -56,12 +56,12 @@ sudo dokku plugin:install https://github.com/dokku/dokku-postgres.git postgres
 dokku postgres:create {{ cookiecutter.__project_slug }}-db
 dokku postgres:link {{ cookiecutter.__project_slug }}-db {{ cookiecutter.__project_slug }}
 
-{%- if cookiecutter.include_elasticsearch -%}
+{% if cookiecutter.include_elasticsearch %}
 # elasticsearch
 sudo dokku plugin:install https://github.com/dokku/dokku-elasticsearch.git elasticsearch
 dokku elasticsearch:create {{ cookiecutter.__project_slug }}-es
 dokku elasticsearch:link {{ cookiecutter.__project_slug }}-es {{ cookiecutter.__project_slug }}
-{%- endif -%}
+{% endif %}
 
 # letsencrypt
 sudo dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
@@ -85,10 +85,10 @@ dokku config:set {{ cookiecutter.__project_slug }} --no-restart DEBUG=false ALLO
 # create superuser account
 dokku run {{ cookiecutter.__project_slug }} python manage.py createsuperuser
 
-{%- if cookiecutter.include_elasticsearch -%}
+{% if cookiecutter.include_elasticsearch %}
 # create the elasticsearch index
 python manage.py search_index --create
-{%- endif -%}
+{% endif %}
 ```
 
 ```sh
