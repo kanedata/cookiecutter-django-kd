@@ -4,6 +4,7 @@ django-debug-toolbar
 django-htmx
 dj-database-url
 jinja2
+jinjax
 psycopg2-binary
 {% if cookiecutter.include_elasticsearch %}
 django-elasticsearch-dsl

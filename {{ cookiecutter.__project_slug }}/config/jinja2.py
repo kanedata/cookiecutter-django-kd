@@ -1,8 +1,10 @@
+import os
 import re
 import urllib.parse
 from datetime import date, datetime
 from decimal import Decimal
 
+import jinjax
 import titlecase
 from django.contrib.humanize.templatetags.humanize import naturalday, naturaltime
 from django.shortcuts import resolve_url
@@ -11,6 +13,7 @@ from django.urls import NoReverseMatch, reverse
 from django.utils.text import slugify
 from django_htmx.jinja import django_htmx_script
 from jinja2 import Environment
+from jinja2.loaders import FileSystemLoader
 from markdownx.utils import markdownify
 
 VOWELS = re.compile("[AEIOUYaeiouy]")
@@ -229,8 +232,8 @@ def format_number(v, format_str=None):
     return str(v)
 
 
-def environment(**options):
-    env = Environment(**options)
+def environment(loader: FileSystemLoader, **options):
+    env = Environment(loader=loader, **options)
 
     env.globals.update(
         {
@@ -259,4 +262,13 @@ def environment(**options):
             "format_number": format_number,
         }
     )
+
+    env.add_extension(jinjax.JinjaX)
+    catalog = jinjax.Catalog(jinja_env=env)
+
+    catalog.add_folder("components")
+    catalog.add_folder(os.path.join("jinja2"))
+    for dir in loader.searchpath:
+        catalog.add_folder(os.path.join(dir, "components"))
+
     return env
