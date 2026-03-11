@@ -1,0 +1,38 @@
+[project]
+name = "{{ cookiecutter._project_slug }}"
+version = "0.1.0"
+description = "{{ cookiecutter.project_name }}"
+readme = "readme.md"
+authors = [
+    { name = "{{ cookiecutter.author }}", email = "{{ cookiecutter.author_email }}" },
+]
+requires-python = ">=3.12"
+dependencies = [
+    "django",
+    "gunicorn",
+    "django-debug-toolbar",
+    "django-htmx",
+    "dj-database-url",
+    "jinja2",
+    "jinjax",
+    "psycopg2-binary",
+    {% if cookiecutter.include_elasticsearch %}"django-elasticsearch-dsl",{% endif %}
+    "django-ninja",
+    "python-dotenv",
+    "whitenoise",
+    "inflect",
+    "titlecase",
+    "django-storages",
+    "django-markdownx",
+    "django-click",
+    "boto3",
+]
+
+[tool.ruff]
+lint.select = ["E", "F", "I"]
+lint.ignore = ['E501']
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings_test"
+# -- recommended but optional:
+python_files = ["tests.py", "test_*.py", "*_test.py", "testing/python/*.py"]

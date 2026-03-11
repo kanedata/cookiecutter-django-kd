@@ -13,16 +13,13 @@ pip-sync
 ### With UV
 
 ```sh
-uv venv
-uv pip compile requirements.in -o requirements.txt
-uv pip sync requirements.txt
+uv sync
 ```
 
 #### Update dependencies
 
 ```sh
-uv pip compile requirements.in -o requirements.txt
-uv pip sync requirements.txt
+uv sync
 ```
 
 ### Setup Django
