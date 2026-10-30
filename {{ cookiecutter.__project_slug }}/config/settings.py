@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from socket import gethostbyname_ex, gethostname
 
 import dj_database_url
 from dotenv import load_dotenv
@@ -31,13 +32,26 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "true").lower().startswith("t")
 
+_allowed_hosts = os.environ.get("ALLOWED_HOSTS")
+ALLOWED_HOSTS = _allowed_hosts.split(";") if _allowed_hosts else []
 ALLOWED_HOSTS = (
-    os.environ.get("ALLOWED_HOSTS").split(";")
-    if os.environ.get("ALLOWED_HOSTS")
-    else []
+    [
+        gethostname(),
+    ]
+    + list(set(gethostbyname_ex(gethostname())[2]))
+    + ALLOWED_HOSTS
+)
+CSRF_TRUSTED_ORIGINS = [f"http://{host}" for host in ALLOWED_HOSTS] + [
+    f"https://{host}" for host in ALLOWED_HOSTS
+]
+ENFORCE_HOST = (
+    os.environ.get("ENFORCE_HOST").split(";")
+    if os.environ.get("ENFORCE_HOST")
+    else None
 )
 INTERNAL_IPS = [
     "127.0.0.1",
+    "localhost",
 ]
 
 
