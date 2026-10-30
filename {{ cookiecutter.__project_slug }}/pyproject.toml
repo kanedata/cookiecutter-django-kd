@@ -1,5 +1,5 @@
 [project]
-name = "{{ cookiecutter._project_slug }}"
+name = "{{ cookiecutter.__project_slug }}"
 version = "0.1.0"
 description = "{{ cookiecutter.project_name }}"
 readme = "readme.md"
