@@ -6,7 +6,7 @@ readme = "readme.md"
 authors = [
     { name = "{{ cookiecutter.author }}", email = "{{ cookiecutter.author_email }}" },
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
     "django",
     "gunicorn",
@@ -15,7 +15,7 @@ dependencies = [
     "dj-database-url",
     "jinja2",
     "jinjax",
-    "psycopg2-binary",
+    "psycopg[binary]",
     {% if cookiecutter.include_elasticsearch %}"django-elasticsearch-dsl",{% endif %}
     "django-ninja",
     "python-dotenv",
@@ -29,10 +29,16 @@ dependencies = [
 ]
 
 [tool.ruff]
-lint.select = ["E", "F", "I"]
+lint.select = ["E", "F", "I", "ICN001", "ICN002", "ICN003"]
 lint.ignore = ['E501']
+
+[tool.ruff.lint.flake8-import-conventions.extend-aliases]
+"datetime" = "dt"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings_test"
 # -- recommended but optional:
 python_files = ["tests.py", "test_*.py", "*_test.py", "testing/python/*.py"]
+
+[dependency-groups]
+dev = ["pytest>=9.2.0", "ruff>=0.17.3"]

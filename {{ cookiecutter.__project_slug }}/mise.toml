@@ -1,0 +1,33 @@
+[tasks]
+dj = "python manage.py"
+serve = "python manage.py runserver"
+collectstatic = "python manage.py collectstatic --noinput"
+test = ['pytest .']
+lint = ["ruff check .", "ruff format . --check"]
+fmt = ["ruff format .", "ruff check . --fix"]
+loc = 'uvx pygount --format=summary --folders-to-skip="[...],node_modules,staticfiles,static" .'
+
+[tasks.mm]
+depends_post = ["fmt"]
+run = ['python manage.py makemigrations']
+
+[tasks.m]
+depends = ["collectstatic"]
+run = [
+    'python manage.py migrate --noinput',
+    "python manage.py createcachetable",
+]
+
+[tasks.full_test]
+depends = ["collectstatic", "test", "lint"]
+
+[tasks.deploy]
+depends = ["test", "lint"]
+run = "git push dokku main"
+raw = true
+
+[tasks.s]
+run = [{ tasks = ["serve", "dev"] }]
+
+[env]
+_.python.venv = { path = ".venv" }

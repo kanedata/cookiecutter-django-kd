@@ -13,13 +13,14 @@ pip-sync
 ### With UV
 
 ```sh
-uv sync
+uv venv
+uv sync --all-groups
 ```
 
 #### Update dependencies
 
 ```sh
-uv sync
+uv sync --all-groups -U
 ```
 
 ### Setup Django
